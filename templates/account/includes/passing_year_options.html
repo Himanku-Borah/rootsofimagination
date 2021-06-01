@@ -1,0 +1,10 @@
+{% load admission_tags %}
+
+{% for year in yearList %}
+<option value="{{ year}}"
+    {% compareValuesAndReturnSelected selectedYear year form.is_bound %}
+>{{year}}
+
+</option>
+
+{% endfor %}

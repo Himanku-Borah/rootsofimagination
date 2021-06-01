@@ -1,0 +1,854 @@
+
+{% extends 'base.html' %} {% load static %} {% block title %} ROI | Home
+{%endblock%} {% block content %}
+{% load admission_tags %}
+
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y mt-5" style="min-height: 84vh">
+  <div class="container text-center" style="margin-top: 20px;">
+    {% include 'includes/alerts.html' %}
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 well">
+        <div class="panel panel-info">
+          <div class="panel">
+            <h2 class="text-center">ROOTS OF IMAGINATION</h2>
+            <div class="text-center">
+              <span>Marangi, P.O- Daigroung-785702</span><br />
+              <span>Dist: Golaghat (Assam)</span><br />
+              <span>Contact: 9101267720</span>
+            </div>
+            <hr />
+
+            <h1
+              class="text-center"
+              style="text-decoration: underline; margin-bottom: 20px"
+            >
+              ADMISSION FORM
+            </h1>
+          </div>
+          <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="panel-body">
+
+              <!-- Profile image section  -->
+              
+              <div class="form-group">
+                <label for="name" class="control-label col-sm-3">Profile Photo :</label>
+                <div class="col-sm-7">
+                  <div id="profile-container">
+                    <image id="profileImage" src=" {{ MEDIA_URL }}students/profile_photos/profile.png" />
+                  </div>
+                  <input id="imageUpload" type="file" 
+                        name="profile_photo" placeholder="Photo" capture>
+                    
+                  {% displayValidationError form.profile_photo.errors %}
+
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="name" class="control-label col-sm-3">Name :</label>
+                <div class="col-sm-7">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="form-control"
+                    value = '{% getOldFormValue form.is_bound form.name.value %}'
+                  />
+
+                  {% displayValidationError form.name.errors %}
+                </div>
+              </div>
+              
+
+              <div class="form-group">
+                <label for="father_name" class="control-label col-sm-3"
+                  >Father's Name :</label
+                >
+                <div class="col-sm-7">
+                  <input
+                    type="text"
+                    name="father_name"
+                    id="father_name"
+                    class="form-control"
+                    value = "{% getOldFormValue form.is_bound form.father_name.value %}"
+                  />
+
+                  {% displayValidationError form.father_name.errors %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="mother_name" class="control-label col-sm-3"
+                  >Mother's Name :</label
+                >
+                <div class="col-sm-7">
+                  <input
+                    type="text"
+                    name="mother_name"
+                    id="mother_name"
+                    class="form-control"
+                    value = "{% getOldFormValue form.is_bound form.mother_name.value %}"
+                  />
+
+                  {% displayValidationError form.mother_name.errors %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="father_occupation" class="control-label col-sm-3"
+                  >Father's Occupation & Designation :</label
+                >
+                <div class="col-sm-7">
+                  <input
+                    type="text"
+                    name="father_occupation"
+                    id="father_occupation"
+                    class="form-control"
+                    value = "{% getOldFormValue form.is_bound form.father_occupation.value %}"
+
+                  />
+
+                  {% displayValidationError form.father_occupation.errors %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="mother_occupation" class="control-label col-sm-3"
+                  >Mother's Occupation :</label
+                >
+                <div class="col-sm-7">
+                  <input
+                    type="text"
+                    name="mother_occupation"
+                    id="mother_occupation"
+                    class="form-control"
+                    value = "{% getOldFormValue form.is_bound form.mother_occupation.value %}"
+
+                  />
+
+                  {% displayValidationError form.mother_occupation.errors %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dob" class="control-label col-sm-3"
+                  >Date of Birth :</label
+                >
+
+                <div class="col-sm-7">
+                  <input
+                    type="date"
+                    name="dob"
+                    id="dob"
+                    class="form-control"
+                    value = "{% getOldFormValue form.is_bound form.dob.value %}"
+
+                  />
+
+                  {% displayValidationError form.dob.errors %}
+
+                </div>
+                
+              </div>
+
+              <!-- <div class="form-group">
+                <label class="control-label col-sm-3" for="mobile"
+                  >Mobile :</label
+                >
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">+91</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="mobile"
+                      maxlength="10"
+                    />
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="form-group">
+                <label for="gender" class="control-label col-sm-3"
+                  >Gender :</label
+                >
+                <div class="col-sm-2">
+                  <select name="gender" id="gender" class="form-control">
+                    <option value="" selected disabled>Select</option>
+                    <option value="M" 
+                    {% compareValuesAndReturnSelected form.gender.value "M" form.is_bound %}
+
+                    >MALE</option>
+                    <option value="F"
+                    {% compareValuesAndReturnSelected form.gender.value "F" form.is_bound %}
+
+                    >FEMALE</option>
+                    <option value="Others"
+                    {% compareValuesAndReturnSelected form.gender.value "Others" form.is_bound %}
+
+                    >Others</option>
+                    
+                  </select>
+
+                  {% displayValidationError form.gender.errors %}
+
+
+                </div>
+                <label for="course" class="control-label col-sm-2"
+                  >Your choice of optional :</label
+                >
+                <div class="col-sm-3">
+                  <select name="course" id="course" class="form-control">
+                    <option value="" selected disabled>Select Option</option>
+                    <option value="upsc" 
+                    {% compareValuesAndReturnSelected form.course.value "upsc" form.is_bound %}
+                    >UPSC</option>
+                    <option value="apsc"
+                    {% compareValuesAndReturnSelected form.course.value "apsc" form.is_bound %}
+
+                    >APSC</option>
+                    <option value="other_govt_jobs"
+                    {% compareValuesAndReturnSelected form.course.value "other_govt_jobs" form.is_bound %}
+
+                    >Other Govt. Jobs</option>
+                  </select>
+
+                  {% displayValidationError form.name.errors %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="mailing_address" class="control-label col-sm-3"
+                  >Mailing Address :</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    type="email"
+                    name="mailing_address"
+                    id="mailing_address"
+                    class="form-control"
+                    disabled
+                    value="{{ user.email }}"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group mb-5">
+                <label for="address" class="control-label col-sm-3"
+                  >Address :</label
+                >
+                <div class="col-sm-7">
+                  <textarea
+                    name="address"
+                    rows="3"
+                    id="address"
+                    class="form-control"
+                  >
+                  {% getOldFormValue form.is_bound form.address.value %}
+
+                  </textarea>
+
+                  {% displayValidationError form.address.errors %}
+
+                </div>
+                </div>
+              </div>
+
+              <fieldset>
+                <legend class="text-center">
+                  <b>Academic Qualifications</b>
+                </legend>
+                <!-- ************ Start of X and HSC************** -->
+                <div class="row">
+                  <!-- ************ Start of X ************** -->
+                  <div class="col-lg-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title text-center">X</h5>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label for="x_board" class="control-label col-sm-4"
+                            >Board :</label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              name="x_board"
+                              id="x_board"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <option value="SEBA"
+                              {% compareValuesAndReturnSelected form.x_board.value "SEBA" form.is_bound %}
+                              >SEBA</option>
+                              <option value="CBSE"
+                              {% compareValuesAndReturnSelected form.x_board.value "CBSE" form.is_bound %}
+                              >CBSE</option>
+                              <option value="OTHERS" 
+                              {% compareValuesAndReturnSelected form.x_board.value "OTHERS" form.is_bound %}
+                              >Others</option>
+                            </select>
+
+                            {% displayValidationError form.x_board.errors %}
+
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="x_subjects" class="control-label col-sm-4"
+                            >Subject(s) :</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="text"
+                              name="x_subjects"
+                              id="x_subjects"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.x_subjects.value %}"
+
+                            />
+
+                            {% displayValidationError form.x_subjects.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            class="control-label col-sm-4"
+                            for="x_percentage"
+                            >% Of Marks :</label
+                          >
+                          <div class="col-sm-8">
+                            <div class="input-group">
+                              <span class="input-group-addon">%</span>
+                              <input
+                                type="number"
+                                class="form-control"
+                                name="x_percentage"
+                                id="x_percentage"
+                                step="0.01"
+                              
+                                value = "{% getOldFormValue form.is_bound form.x_percentage.value %}"
+
+                              />
+
+                            </div>
+
+                            {% displayValidationError form.x_percentage.errors %}
+                           
+                        
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="x_year" class="control-label col-sm-4"
+                            >Year Of Passing :</label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              name="x_year"
+                              id="x_year"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <!-- {% include 'account/includes/passing_year_options.html' with selectedYear=form.x_year.value  %} -->
+                              {% generateCourseYearList 1980 2022 form form.x_year.value %}
+                            </select>
+
+                            {% displayValidationError form.x_year.errors %}
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ************ End of X ************** -->
+
+                  <!-- ************ Start of X ************** -->
+                  <div class="col-lg-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title text-center">XII</h5>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label for="xii_board" class="control-label col-sm-4"
+                            >Board :</label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              name="xii_board"
+                              id="xii_board"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <option value="SEBA" 
+                              {% compareValuesAndReturnSelected form.xii_board.value "SEBA" form.is_bound %}
+                              >SEBA</option>
+                              <option value="CBSE"
+                              {% compareValuesAndReturnSelected form.xii_board.value "CBSE" form.is_bound %}
+
+                              >CBSE</option>
+                              <option value="OTHERS"
+                              {% compareValuesAndReturnSelected form.xii_board.value "OTHERS" form.is_bound %}
+
+                              >Others</option>
+                            </select>
+
+                            {% displayValidationError form.xii_board.errors %}
+
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            for="xii_subjects"
+                            class="control-label col-sm-4"
+                            >Subject(s) :</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="text"
+                              name="xii_subjects"
+                              id="xii_subjects"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.xii_subjects.value %}"
+
+                            />
+
+                            {% displayValidationError form.xii_subjects.errors %}
+
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            class="control-label col-sm-4"
+                            for="xii_percentage"
+                            >% Of Marks :</label
+                          >
+                          <div class="col-sm-8">
+                            <div class="input-group">
+                              <span class="input-group-addon">%</span>
+                              <input
+                                type="number"
+                                class="form-control"
+                                name="xii_percentage"
+                                id="xii_percentage"
+                                step="0.01"
+                           
+                                value = "{% getOldFormValue form.is_bound form.xii_percentage.value %}"
+
+                              />
+
+                            </div>
+                           
+                            {% displayValidationError form.xii_percentage.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="xii_year" class="control-label col-sm-4"
+                            >Year Of Passing :</label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              name="xii_year"
+                              id="xii_year"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <!-- {% include 'account/includes/passing_year_options.html' with selectedYear=form.xii_year.value  %} -->
+                              {% generateCourseYearList 1980 2022 form form.xii_year.value %}
+                              
+                            </select>
+
+                            {% displayValidationError form.xii_year.errors %}
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ************ End of X ************** -->
+                </div>
+                <!-- ************ End of X and XII************** -->
+
+                <!-- ************ Start of Graduation Level************** -->
+                <!-- ************ Start of Graduation and Master************** -->
+                <div class="row">
+                  <!-- ************ Start of Graduation ************** -->
+                  <div class="col-lg-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title text-center">Degree</h5>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label
+                            for="degree_university"
+                            class="control-label col-sm-4"
+                            >University :</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="text"
+                              name="degree_university"
+                              id="degree_university"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.degree_university.value %}"
+
+                            />
+
+                            {% displayValidationError form.degree_university.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            for="degree_subjects"
+                            class="control-label col-sm-4"
+                            >Subject(s) :</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="text"
+                              name="degree_subjects"
+                              id="degree_subjects"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.degree_subjects.value %}"
+
+                            />
+
+                            {% displayValidationError form.degree_subjects.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            class="control-label col-sm-4"
+                            for="degree_percentage"
+                            >% Of Marks :</label
+                          >
+                          <div class="col-sm-8">
+                            <div class="input-group">
+                              <span class="input-group-addon">%</span>
+                              <input
+                                type="number"
+                                class="form-control"
+                                name="degree_percentage"
+                                id="degree_percentage"
+                                step="0.01"
+                              
+                                value = "{% getOldFormValue form.is_bound form.degree_percentage.value %}"
+
+                              />
+
+                            </div>
+                           
+                            {% displayValidationError form.degree_percentage.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            for="degree_year"
+                            class="control-label col-sm-4"
+                            >Year Of Passing :</label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              name="degree_year"
+                              id="degree_year"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <!-- {% include 'account/includes/passing_year_options.html' with selectedYear=form.degree_year.value  %} -->
+                              {% generateCourseYearList 1980 2022 form form.degree_year.value %}
+
+                            </select>
+
+                            {% displayValidationError form.degree_year.errors %}
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ************ End of graduation ************** -->
+
+                  <!-- ************ Start of Master************** -->
+                  <div class="col-lg-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title text-center">Post Graduation</h5>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label
+                            for="pg_university"
+                            class="control-label col-sm-4"
+                            >University :</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="text"
+                              name="pg_university"
+                              id="pg_university"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.pg_university.value %}"
+
+                            />
+
+                            {% displayValidationError form.pg_university.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            for="pg_subjects"
+                            class="control-label col-sm-4"
+                            >Subject(s) :</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="text"
+                              name="pg_subjects"
+                              id="pg_subjects"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.pg_subjects.value %}"
+
+                            />
+
+                            {% displayValidationError form.pg_subjects.errors %}
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label
+                            class="control-label col-sm-4"
+                            for="pg_percentage"
+                            >% Of Marks :</label
+                          >
+                          <div class="col-sm-8">
+                            <div class="input-group">
+                              <span class="input-group-addon">%</span>
+                              <input
+                                type="number"
+                                class="form-control"
+                                name="pg_percentage"
+                                id="pg_percentage"
+                                step="0.01"
+                               
+                                value = "{% getOldFormValue form.is_bound form.pg_percentage.value %}"
+
+                              />
+
+                            </div>
+                            
+                            {% displayValidationError form.pg_percentage.errors %}
+
+
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="pg_year" class="control-label col-sm-4"
+                            >Year Of Passing :</label
+                          >
+                          <div class="col-sm-8">
+                            <select
+                              name="pg_year"
+                              id="pg_year"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <!-- {% include 'account/includes/passing_year_options.html' with selectedYear=form.pg_year.value  %} -->
+                              {% generateCourseYearList 1980 2022 form form.pg_year.value %}
+
+                            </select>
+
+                            {% displayValidationError form.pg_year.errors %}
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ************ End of Master ************** -->
+                </div>
+                <!-- ************ End of Graduation and Master************** -->
+
+                <!-- ************ Start of PHD Level (if any)************** -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title text-center">Other Qualification</h5>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label
+                            for="other_subjects"
+                            class="control-label col-sm-2"
+                            >Subject</label
+                          >
+                          <div class="col-sm-4">
+                            <input
+                              type="text"
+                              name="other_subjects"
+                              id="other_subjects"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.other_subjects.value %}"
+
+                            />
+
+                            {% displayValidationError form.other_subjects.errors %}
+
+                          </div>
+
+                          <label class="control-label col-sm-2" for="other_year"
+                            >Passing Year</label
+                          >
+                          <div class="col-sm-4">
+                            <select
+                              name="other_year"
+                              id="other_year"
+                              class="form-control"
+                            >
+                              <option selected disabled value="">
+                                Select One
+                              </option>
+                              <!-- {% include 'account/includes/passing_year_options.html' with selectedYear=form.other_year.value  %} -->
+                              {% generateCourseYearList 1980 2022 form form.other_year.value %}
+                            </select>
+
+                            {% displayValidationError form.other_year.errors %}
+
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label
+                            for="other_university"
+                            class="control-label col-sm-2"
+                            >University</label
+                          >
+                          <div class="col-sm-4">
+                            <input
+                              type="text"
+                              name="other_university"
+                              id="other_university"
+                              class="form-control"
+                              value = "{% getOldFormValue form.is_bound form.other_university.value %}"
+
+                            />
+
+                            {% displayValidationError form.other_university.errors %}
+
+                          </div>
+
+                          <div class="form-group">
+                            <label
+                              for="other_percentage"
+                              class="control-label col-sm-2"
+                              >% Of Marks :</label
+                            >
+                            <div class="col-sm-4">
+                              <div class="input-group" style="width: 94%">
+                                <span class="input-group-addon">%</span>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  name="other_percentage"
+                                  id="other_percentage"
+                                  step="0.01"
+                                 
+                                  value = "{% getOldFormValue form.is_bound form.other_percentage.value %}"
+
+                                />
+
+                                {% displayValidationError form.other_percentage.errors %}
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ************ End of PHD Level (if any)************** -->
+              </fieldset>
+            </div>
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="checkbox">
+                    <label class="text-danger">
+                      <input
+                        type="checkbox"
+                        id="all_correct"
+                        name="all_correct"
+                        value="1"
+                        required
+                      />
+                      The information ubmitted by me is true to the best of my
+                      knowledge and belief. Any incorrect information may cause
+                      the application to be summarily rejected.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                  <input
+                    type="submit"
+                    class="btn btn-success btn-lg btn-block"
+                    value="Submit"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

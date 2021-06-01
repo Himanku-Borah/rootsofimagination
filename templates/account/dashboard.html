@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ROI | Home
+{%endblock%}
+
+{% block content %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg" style="margin-top: 50px;">
+  {% include 'includes/alerts.html' %}
+
+  <div class="container">
+    
+    <div class="row">
+    <aside class="col-md-3">
+      <!--   SIDEBAR   -->
+      <ul class="list-group">
+        <a class="list-group-item active" href="#"> My Account </a>
+        <a class="list-group-item" href="#"> Transaction Status </a>
+        <a class="list-group-item" href="#"> Change Password </a>
+        <a class="list-group-item" href="#">Settings </a>
+        <a class="list-group-item" href="#"> Other Option 1  </a>
+        <a class="list-group-item" href="#"> Other Option 2 </a>
+      </ul>
+      <br>
+      <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+      <!--   SIDEBAR .//END   -->
+    </aside>
+    <main class="col-md-9">
+      <article class="card">
+        {%  if user.has_student_details is False %}
+          <h3>You have not enrolled in any courses yet!</h3>
+        {% else %}
+          {% include "account/includes/user_profile.html" %}
+        {% endif %}
+      </article> <!-- order-group.// --> 
+    </main>
+  </div> <!-- row.// -->
+  </div>
+  </section>
+  <!-- ========================= SECTION CONTENT END// ========================= -->
+  
+
+
+{% endblock %}

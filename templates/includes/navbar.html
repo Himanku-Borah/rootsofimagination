@@ -1,0 +1,48 @@
+{% load static %}
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center   ">
+  <div class="container d-flex align-items-center">
+
+    <div class="logo mr-auto">
+      <!-- <h1 class="text-light"><a href="index.html">Selecao</a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="{% url 'homepage' %}"><img src="{% static 'img/logo.png' %}" alt="" class="img-fluid"></a>
+      <!-- <span class="navbar-text ubuntu-font">&nbsp;A Group of Civil Service Aspirants</span> -->
+      {% if user.id is None %}
+      <small class="title text-muted">Welcome guest!</small>
+      {% else %}
+      <small class="title text-muted">Welcome {{ user.first_name }}</small>
+      {% endif %}
+    </div>
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'homepage' %}#about">About</a></li>
+        <li><a href="{% url 'homepage' %}#services">Courses</a></li>
+        <li><a href="{% url 'homepage' %}#team">Faculties</a></li>
+        <li><a href="{% url 'homepage' %}#portfolio">Portfolio</a></li>
+        <li><a href="{% url 'homepage' %}#contact">Contact</a></li>
+
+        {% if user.id is None %}
+        <li><a href="{% url 'login' %}">Enroll Now</a></li>  
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% else %} 
+
+        
+        {% if user.has_student_details is False %}
+        <li><a href="{% url 'admission' %}">Enroll Now</a></li>  
+        {% endif %}
+          
+
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% endif %}
+
+
+      </ul>
+      
+    </nav><!-- .nav-menu -->
+
+  </div>
+</header><!-- End Header -->

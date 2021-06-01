@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ROI | Home
+{%endblock%}
+
+{% block content %}
+
+<div class="container mx-auto alert-info text-center" role="alert" style="max-width: 1024px; margin-top:90px;">
+  {% include 'includes/alerts.html' %}
+  <a href="{% url 'signup' %}">Click Here</a> to Signup again.
+</div> 
+
+{%endblock%}

@@ -1,0 +1,42 @@
+<div class="user-profile">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="well well-sm">
+        <div class="user-profile-card">
+          <div class="user-profile-header"></div>
+          <div class="user-profile-avatar text-center">
+            <img alt="" src="{{ studentDetails.profile_photo.url }}" />
+          </div>
+          <div class="row" style="display: block;">
+            <div class="text-center">
+              <h4>{{ studentDetails.name }}</h4>
+              <small>({{ studentDetails.course }})</small>
+              <br />
+            </div>
+            <div class="panel-footer"></div>
+            <div class="container">
+              <p>
+                <small>Email</small>
+                {{ studentDetails.user.email }}
+              </p>
+              <p>
+                <small>Mobile</small>
+                {{ studentDetails.user.phone_number }}
+              </p>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a
+              href="#"
+              data-original-title="Edit My Profile"
+              data-toggle="tooltip"
+              type="button"
+              class="btn btn-sm btn-primary"
+              ><i class="glyphicon glyphicon-edit"></i> Edit My Profile</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
