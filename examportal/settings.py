@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+0ms*n7k&shpxfc9vwc_ayyfrsk(z$r+qclxfckksa5j^_cmlq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['rootsofimagination.herokuapp.com']
 
 
 # Application definition
@@ -155,6 +155,6 @@ MESSAGE_TAGS = {
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'rootsofimagination2021@gmail.com'
+EMAIL_HOST_PASSWORD = '@cc3ssroot'
 EMAIL_USE_TLS = True
