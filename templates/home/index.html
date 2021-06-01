@@ -245,7 +245,12 @@ ROI | Home
           <p>If you want to be a part of our this journey, then please join us.</p>
         </div>
         <div class="col-lg-3 cta-btn-container text-center">
-          <a class="cta-btn align-middle" href="#contact">Enroll Now</a>
+          {% if user.id is None %}
+          <a class="cta-btn align-middle" href="{% url 'login'%}">Enroll Now</a>
+          {% else %} 
+          <a class="cta-btn align-middle" href="{% url 'admission' %}">Enroll Now</a>
+          {% endif %}
+
         </div>
       </div>
 
